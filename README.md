@@ -20,7 +20,7 @@
 
 | Column             | Type       | Options                        | 
 | ------------------ | ------     | -----------                    | 
-| item_name          | string     | null: false, unique: true      | 
+| item_name          | string     | null: false                    | 
 | item_detail        | text       | null: false                    | 
 | category_id        | integer    | null: false                    | 
 | item_status_id     | integer    | null: false                    | 
