@@ -12,9 +12,11 @@ class Item < ApplicationRecord
   validates :item_name, :item_detail, :price, presence: true
 
   #ジャンルの選択が「---」の時は保存できないようにする
-  validates :category_id, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :item_status_id, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :delivery_charge_id, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :delivery_time_id, numericality: { other_than: 1, message: "can't be blank" } 
+  with_options numericality: { other_than: 0 } do
+    validates :category_id
+    validates :item_status_id
+    validates :delivery_charge_id
+    validates :prefecture_id
+    validates :delivery_time_id
+  end
 end
