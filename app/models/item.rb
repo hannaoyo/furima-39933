@@ -9,7 +9,18 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   #空の投稿を保存できないようにする
-  validates :item_name, :item_detail, :price, presence: true
+  with_options presence: true do
+    validates :user_id
+    validates :image
+    validates :item_name
+    validates :item_detail
+    validates :category_id
+    validates :item_status_id
+    validates :delivery_charge_id
+    validates :prefecture_id
+    validates :delivery_time_id
+    validates :price
+  end
 
   #ジャンルの選択が「---」の時は保存できないようにする
   with_options numericality: { other_than: 0 } do
