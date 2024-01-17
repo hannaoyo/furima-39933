@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   #ログインしていないユーザーはログインページに移動
-  #before_action :authenticate_user!,  except: [:index]
+  before_action :authenticate_user!,  except: [:index]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
