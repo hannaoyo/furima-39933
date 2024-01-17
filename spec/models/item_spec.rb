@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @user = FactoryBot.build(:user)
+  end
+
+  describe '商品出品入力' do
+
+  end
 end

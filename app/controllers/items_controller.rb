@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!,  except: [:index]
+
   def index
-    @items = Item.order("created_at DESC")
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
@@ -10,9 +12,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to @item
+      redirect_to root_path
     else
-      render :index, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
+    end
   end
 
 
@@ -20,7 +23,7 @@ class ItemsController < ApplicationController
 
 
   def item_params
-    params.require(:item).permit(:image, :item_name, :item_detail, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :item_name, :item_detail, :category_id, :item_status_id, :delivery_charge_id, :delivery_time_id, :prefecture_id, :price).merge(user_id: current_user.id)
   end
 
 end
