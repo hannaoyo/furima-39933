@@ -19,7 +19,7 @@ class Item < ApplicationRecord
     validates :delivery_charge_id
     validates :prefecture_id
     validates :delivery_time_id
-    validates :price
+    validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999}
   end
 
   #ジャンルの選択が「---」の時は保存できないようにする
