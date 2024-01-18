@@ -2,9 +2,9 @@ class ItemsController < ApplicationController
   #ログインしていないユーザーはログインページに移動
   before_action :authenticate_user!,  except: [:index]
 
-  #def index
+  def index
    # @items = Item.includes(:user).order("created_at DESC")
-  #end
+  end
 
   def new
     @item = Item.new
@@ -19,8 +19,8 @@ class ItemsController < ApplicationController
     end 
   end 
 
-  def show
-  end
+  #def show
+  #end
 
 
   private
