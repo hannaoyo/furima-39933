@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品登録' do
-    context '出品登録ができるとき'do
+    context '出品登録ができるとき' do
       it '全ての入力項目が存在すれば登録できる' do
         expect(@item).to be_valid
       end
@@ -37,7 +37,7 @@ RSpec.describe Item, type: :model do
       end
     end
 
-    context '出品登録ができないとき'do
+    context '出品登録ができないとき' do
       it 'ユーザー登録しないと出品できない' do
         @item.user_id = nil
         @item.valid?
@@ -66,7 +66,7 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが「---」では登録できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 0")
+        expect(@item.errors.full_messages).to include('Category must be other than 0')
       end
       it '商品の状態が空では登録できない' do
         @item.item_status_id = nil
@@ -76,7 +76,7 @@ RSpec.describe Item, type: :model do
       it '商品の状態が「---」では登録できない' do
         @item.item_status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item status must be other than 0")
+        expect(@item.errors.full_messages).to include('Item status must be other than 0')
       end
       it '配送料の負担が空では登録できない' do
         @item.delivery_charge_id = nil
@@ -86,7 +86,7 @@ RSpec.describe Item, type: :model do
       it '配送料の負担が「---」では登録できない' do
         @item.delivery_charge_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge must be other than 0")
+        expect(@item.errors.full_messages).to include('Delivery charge must be other than 0')
       end
       it '発送元の地域が空では登録できない' do
         @item.prefecture_id = nil
@@ -96,7 +96,7 @@ RSpec.describe Item, type: :model do
       it '発送元の地域が「---」では登録できない' do
         @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
       end
       it '発送までの日数が空では登録できない' do
         @item.delivery_time_id = nil
@@ -106,7 +106,7 @@ RSpec.describe Item, type: :model do
       it '発送までの日数が「---」では登録できない' do
         @item.delivery_time_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery time must be other than 0")
+        expect(@item.errors.full_messages).to include('Delivery time must be other than 0')
       end
       it '価格の情報が空では登録できない' do
         @item.price = nil
@@ -116,17 +116,17 @@ RSpec.describe Item, type: :model do
       it '価格が300円未満では登録できない' do
         @item.price = 100
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it '価格が9,999,999円以上では登録できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it '価格に半角数字以外が含まれている場合は出品できない' do
         @item.price = 'abc123'
         @item.valid?
-        except(@item.errors.full_messages).to include("Price is not a number")
+        except(@item.errors.full_messages).to include('Price is not a number')
       end
     end
   end
