@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  # ログインしていないユーザーはログインページに移動
-  before_action :authenticate_user!, except: [:index]
+  # ログアウト状態の場合は, ログインページに移動
+  # ログアウト状態の場合でも商品詳細が表示されるが, 編集・削除・購入できない
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -19,8 +20,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def show
-  # end
+  def show
+    @item = Item.find(params[:id])
+  end
 
   private
 
