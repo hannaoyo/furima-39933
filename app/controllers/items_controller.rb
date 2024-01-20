@@ -26,6 +26,11 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    #ログイン中ユーザーと出品者と同一であれば、商品情報編集ページに遷移できる処理
+    if @item.user_id == current_user.id
+    else
+      redirect_to root_path
+    end
   end
 
   def update
