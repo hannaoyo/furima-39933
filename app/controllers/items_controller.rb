@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # ログアウト状態の場合でも商品詳細が表示されるが, 編集・削除・購入できない
   before_action :authenticate_user!, except: [:index, :show]
   # 重複処理をもとめる
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -38,6 +38,16 @@ class ItemsController < ApplicationController
       redirect_to item_path
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    #ログイン中ユーザーと出品者と同一であれば、商品削除できる処理
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 
