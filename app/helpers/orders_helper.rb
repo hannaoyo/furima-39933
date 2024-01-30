@@ -1,0 +1,2 @@
+module PuschaseRecordsHelper
+end

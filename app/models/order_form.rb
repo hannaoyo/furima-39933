@@ -1,4 +1,4 @@
-class PurchaseRecordForm
+class OrderForm
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture_id, :city, :address_number, :building_name, :phone_number, :user_id, :item_id
 
@@ -13,7 +13,7 @@ class PurchaseRecordForm
   end
 
   def save
-    purchase_record = PurchaseRecord.create(user_id: user_id, item_id: item_id)
-    DeliveryInfo.create(purchase_record_id: purchase_record_id, postal_code: postal_code, prefecture_id: prefecture_id, city: city, address_number: address_number, building_name: building_name, phone_number: phone_number)
+    order = Order.create(user_id: user_id, item_id: item_id)
+    DeliveryInfo.create(order_id: order_id, postal_code: postal_code, prefecture_id: prefecture_id, city: city, address_number: address_number, building_name: building_name, phone_number: phone_number)
   end
 end
