@@ -1,2 +1,2 @@
-module PuschaseRecordsHelper
+module OrdersHelper
 end
