@@ -19,7 +19,7 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form).to be_valid
       end
       it '郵便番号が空でない、かつ「3桁ハイフン4桁」の組み合わせであれば保存できる' do
-        @order_form.postal_code = "123-4567"
+        @order_form.postal_code = '123-4567'
         expect(@order_form).to be_valid
       end
       it '都道府県が空でなければ保存できる' do
@@ -27,11 +27,11 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form).to be_valid
       end
       it '市区町村が空でなければ保存できる' do
-        @order_form.city = "新宿区"
+        @order_form.city = '新宿区'
         expect(@order_form).to be_valid
       end
       it '番地が空でなければ保存できる' do
-        @order_form.address_number = "新宿１２３"
+        @order_form.address_number = '新宿１２３'
         expect(@order_form).to be_valid
       end
       it '建物名が空でも保存できる' do
@@ -39,7 +39,7 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form).to be_valid
       end
       it '電話番号が空でなければ保存できる' do
-        @order_form.phone_number = "09012345678"
+        @order_form.phone_number = '09012345678'
         expect(@order_form).to be_valid
       end
       it '電話番号が10桁以上11桁以内、かつハイフンなしであれば保存できる' do
@@ -67,7 +67,7 @@ RSpec.describe OrderForm, type: :model do
       it '郵便番号にハイフンがないと保存できない' do
         @order_form.postal_code = 1_234_567
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_form.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '都道府県が「---」だと保存できない' do
         @order_form.prefecture_id = 0
@@ -97,17 +97,17 @@ RSpec.describe OrderForm, type: :model do
       it '電話番号にハイフンがあると保存できない' do
         @order_form.phone_number = '090-1234-5678'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_form.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が10桁以下だと保存できない' do
         @order_form.phone_number = 9_012_345_67
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_form.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が12桁以上だと保存できない' do
         @order_form.phone_number = 900_012_345_678
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_form.errors.full_messages).to include('Phone number is invalid')
       end
       it 'トークンが空だと保存できない' do
         @order_form.token = nil

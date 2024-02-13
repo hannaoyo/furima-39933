@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    #ログイン中ユーザーと出品者と同一、かつ未購入の商品の場合の処理
+    # ログイン中ユーザーと出品者と同一、かつ未購入の商品の場合の処理
     if @item.user_id == current_user.id && @item.order.nil?
     else
       redirect_to root_path
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    #ログイン中ユーザーと出品者と同一であれば、商品削除できる処理
+    # ログイン中ユーザーと出品者と同一であれば、商品削除できる処理
     if @item.user_id == current_user.id
       @item.destroy
       redirect_to root_path
@@ -61,5 +61,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
 end
