@@ -26,8 +26,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    #ログイン中ユーザーと出品者と同一であれば、商品情報編集ページに遷移できる処理
-    if @item.user_id == current_user.id
+    #ログイン中ユーザーと出品者と同一、かつ未購入の商品の場合の処理
+    if @item.user_id == current_user.id && @item.order.nil?
     else
       redirect_to root_path
     end

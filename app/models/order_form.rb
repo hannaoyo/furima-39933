@@ -1,6 +1,6 @@
 class OrderForm
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :address_number, :building_name, :phone_number, :user_id, :item_id
+  attr_accessor :postal_code, :prefecture_id, :city, :address_number, :building_name, :phone_number, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :user_id
@@ -10,10 +10,11 @@ class OrderForm
     validates :city
     validates :address_number
     validates :phone_number, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
+    validates :token
   end
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    DeliveryInfo.create(order_id: order_id, postal_code: postal_code, prefecture_id: prefecture_id, city: city, address_number: address_number, building_name: building_name, phone_number: phone_number)
+    DeliveryInfo.create(order_id: order.id, postal_code: postal_code, prefecture_id: prefecture_id, city: city, address_number: address_number, building_name: building_name, phone_number: phone_number)
   end
 end

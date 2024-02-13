@@ -1,6 +1,6 @@
-class CreatePurchaseInfos < ActiveRecord::Migration[7.0]
+class CreateDeliveryInfos < ActiveRecord::Migration[7.0]
   def change
-    create_table :purchase_infos do |t|
+    create_table :delivery_infos do |t|
       t.references :order, null: false, foreign_key: true
       t.string     :postal_code,     null: false
       t.integer    :prefecture_id,   null: false
